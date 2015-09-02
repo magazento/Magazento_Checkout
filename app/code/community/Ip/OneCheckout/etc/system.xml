@@ -1,0 +1,121 @@
+<config>
+    <tabs>
+        <magazento translate="label">
+            <label>Magazento.com</label>
+            <sort_order>250</sort_order>
+        </magazento>
+    </tabs>
+   <sections>
+       <onecheckout>
+            <label>CHECKOUT</label>
+            <tab>magazento</tab>
+             <class>separator-top</class>
+            <frontend_type>text</frontend_type>
+            <sort_order>150</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+		<groups>
+                    <general translate="label">
+                        <label>General</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>0</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <fields>
+                            <active translate="label">
+                                <label>Enable Quick Checkout</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>1</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </active>
+			    <enable_newsletter translate="label">
+                                <label>Enable NewsLetter Subscription</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>33</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </enable_newsletter>
+			     <enable_coupon translate="label">
+                                <label>Enable Coupon</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>35</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </enable_coupon>
+			    <enable_login translate="label">
+                                <label>Enable Login link</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>36</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </enable_login>
+			    <enable_register translate="label">
+                                <label>Customer Registration</label>
+                                <frontend_type>select</frontend_type>
+                                <comment><![CDATA[
+                                    Checkout will handle registaration process on checkout page.<br/>
+                                    For guest order you will need manually enable guest checkout for your magento in <strong>Configuration > Sales > Checkout <br />
+                                    
+                                ]]></comment>                                 
+                                <source_model>onecheckout/source_checkbox</source_model>
+                                <sort_order>37</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </enable_register>
+                        </fields>
+                    </general>
+                    <design translate="label">
+                        <label>Design</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>0</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <fields>
+			    <skin translate="label">
+                                <label>Skin</label>
+                                <frontend_type>select</frontend_type>
+                                <source_model>onecheckout/source_design</source_model>
+                                <sort_order>37</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store>1</show_in_store>
+                            </skin>
+                        </fields>
+                    </design>
+                    <extra translate="label">
+                        <label>Extra information</label>
+                        <frontend_type>text</frontend_type>
+                        <sort_order>999</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <fields>                   
+                            <enable translate="label">
+                                <label>Enable extra information</label>                                
+                                <frontend_type>select</frontend_type>
+                                <source_model>adminhtml/system_config_source_yesno</source_model>
+                                <sort_order>400</sort_order>
+                                <show_in_default>1</show_in_default>
+                                <show_in_website>1</show_in_website>
+                                <show_in_store></show_in_store>
+                            </enable>                        
+                        </fields>
+                    </extra>
+		    
+                </groups>
+        </onecheckout>
+    </sections>
+</config>

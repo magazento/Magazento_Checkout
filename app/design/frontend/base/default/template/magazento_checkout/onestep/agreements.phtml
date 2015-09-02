@@ -1,0 +1,25 @@
+
+<?php if (!$this->getAgreements()) return; ?>
+<?php foreach ($this->getAgreements() as $item): ?>
+    <p class="osc-agreement-p">
+        <input class="checkbox required-entry" type="checkbox" name="agreement[<?php echo $item->getId()?>]" value="1" title="<?php echo $this->htmlEscape($item->getCheckboxText()) ?>" class="checkbox" /><label for="agreement-<?php echo $item->getId()?>"><?php echo $this->htmlEscape($item->getCheckboxText()) ?></label>
+        <a href="#" class="demo-btn" title="<?php echo $item->getName() ?>" onclick="osc_agreement.show('<?php echo $item->getId(); ?>')"><?php echo $item->getName() ?></a>
+    </p>
+   
+    <div id="<?php echo 'checkouttermscontent' . $item->getId() ;?>" class="osc-agreement-content" style="display:none;">
+        <div class="agreements-info">
+            <h1><?php echo $item->getName() ?></h1>
+            <p>
+                <?php if ($item->getIsHtml()){echo $item->getContent();}else{echo nl2br($this->htmlEscape($item->getContent()));} ?>
+            </p>
+            <div class="extra-buttons">            
+                <input type="button" class="login-form-button" onclick="osc_agreement.hide('<?php echo $item->getId();?>')" value="<?php echo $this->__('Close'); ?>"/>
+            </div>
+        </div>
+    </div>
+
+<?php endforeach ?>
+
+<script type="text/javascript" charset="utf-8">
+  var osc_agreement=new Quickcheckout_Agreements();
+</script>

@@ -1,0 +1,80 @@
+<div class="onecheckout-checkout-method">
+    <a href="javascript:void(0);" onclick="login.show();"><?php echo Mage::helper('onecheckout')->getOneCheckoutLogin(); ?></a>
+</div>
+<div id="osc-login-form" style="display:none;">
+          <div id="osc-login-form-div">
+            <h1><?php echo $this->__('Login') ?></h1><br />
+            <a  href="#" onclick="toggleit('osc-login-form-div','osc-forgotpass-div')"><?php echo $this->__('Forgot your password?') ?></a>
+            
+            <div id="inner_loader" class="inner_loader" style="display:none;"></div>
+        <div id="osc-error-message" class="osc-error-message"></div>
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+	
+	    <form id="login-form" action="<?php echo $this->getPostAction() ?>" method="post">
+		<div class="extra-buttons login-box">
+                    
+                    <div class="login-field">
+                        <label><?php echo $this->__('Email Address') ?></label>
+                        <div class="css-fix">                        
+                            <input type="text" class="osc-login-form_input required-entry validate-email" id="login-email" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" />
+                        </div>		    
+                     </div>
+                    <div class="login-field">
+                        <label><?php echo $this->__('Password') ?></label>
+                        <div class="css-fix">
+                            <input type="password" class="osc-login-form_input low_margin required-entry" id="login-password" name="login[password]" />
+                        </div>
+		    </div>
+                    
+                    <div class="login-buttons">
+                        <input type="button" class="login-form-button green" onclick="login.login()" value="<?php echo $this->__('Login'); ?>"/>
+                        <input type="button" class="login-form-button" onclick="login.hide();" value="<?php echo $this->__('Close'); ?>"/>	
+                    </div>
+                </div>
+	    </form>
+	</div>
+	
+	<div id="osc-forgotpass-div" style="display:none;">
+            <p class="back-link"><a href="#" onclick="toggleit('osc-forgotpass-div','osc-login-form-div')"><small>&laquo; </small><?php echo $this->__('Back to Login') ?></a></p>
+            
+		<div id="inner_loader_forgotpass" class="inner_loader" style="display:none;"></div>
+	      <div id="osc-forgotpass-error-message" class="osc-error-message"></div>
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+	 <p><?php echo $this->__('Please enter your email below and we will send you a new password.') ?></p>
+	    <form action="" method="post" id="forgotpass-form">
+                <div class="extra-buttons login-box">
+                    
+                    <div class="login-field">
+                        <label><?php echo $this->__('Email Address') ?></label>
+                        <div class="css-fix">                        
+                            <input type="text" name="email" alt="email" id="email_address" class="osc-login-form_input required-entry validate-email" value="<?php echo $this->htmlEscape($this->getEmailValue()) ?>" />
+                        </div>		    
+                     </div>                    
+                    
+                    <div class="login-buttons">
+                        <input type="button" class="login-form-button green" onclick="forgotpass.forgotpass()" value="<?php echo $this->__('Submit'); ?>"/>
+                        <input type="button" class="login-form-button" onclick="login.hide();" value="<?php echo $this->__('Close'); ?>"/>
+                    </div>
+                </div>
+	    </form>
+	  
+	</div>
+</div>
+
+
+<script type="text/javascript">
+//<![CDATA[
+    var login = new Login('<?php echo $this->getUrl('checkout/go/loginPost') ?>');
+    function toggleit(a,b){
+	Element.hide(a)
+	Element.show(b)
+	
+    }
+
+//]]>
+</script>
+  <script type="text/javascript">
+    //<![CDATA[
+        var forgotpass = new Forgotpass('<?php echo $this->getUrl('checkout/go/forgotpassPost') ?>');
+    //]]>
+ </script>

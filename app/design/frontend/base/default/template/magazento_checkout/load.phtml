@@ -1,0 +1,99 @@
+<div class="onecheckout-countainer">
+    <div class="checkout-top">
+        <div id="onecheckout-loader">
+        </div>
+        <div class="main_header">
+            <?php if (!$this->isCustomerLoggedIn() && Mage::helper('onecheckout')->getConfig('general/enable_login')): ?>
+                <?php echo $this->getChildHtml('osc-login'); ?>
+            <?php else: ?>
+                <div class="onecheckout-checkout-method">
+                    <p><?php echo $this->__('Registered customer'); ?></p>
+                </div>            
+            <?php endif; ?>
+        </div>
+        <?php if (Mage::helper('onecheckout')->getConfig('general/enable_coupon')): ?>
+            <?php echo $this->getChildHtml('coupon') ?> 
+        <?php endif; ?>
+    </div>
+    
+    <div class="checkout-content"> 
+        <?php 
+            $i = 0;
+            $steps = $this->getSteps();
+        ?>
+        <form class="onecheckout" id="onecheckout-form" action="" method="post">
+            <?php if ($this->getChild('login') && $this->getChild('login')->isShow()): ?>
+                <?php echo $this->getChildHtml('login');?>
+            <?php endif; ?>
+
+            <div class="part1">
+                <?php if ($this->getChild('billing') && $this->getChild('billing')->isShow()): ?>
+                        <span class="step_title"><span><?php echo $steps['billing']['label'];?></span></span>
+                        <?php echo $this->getChildHtml('billing');?>
+                <?php endif; ?>
+                <?php if ($this->getChild('shipping') && $this->getChild('shipping')->isShow()): ?>
+                        <?php $checkUseForShipping = Mage::getSingleton('checkout/session')->getData('use_for_shipping');  
+                              if ($checkUseForShipping == true) $style='style="display:block;"';
+                              if ($checkUseForShipping == false) $style='style="display:none;"';
+                        ?>
+                        <div id="shipping-address-form" <?php echo $style ?> >
+                        <span class="step_title"><span><?php echo $steps['shipping']['label'];?></span></span>            
+                            <?php echo $this->getChildHtml('shipping');?>
+                        </div>
+                <?php endif; ?>
+            </div>
+            <div class="part2">   
+                <?php if ($this->getChild('payment') && $this->getChild('payment')->isShow()): ?>
+                        <span class="step_title"><span><?php echo $steps['payment']['label'];?></span></span>                
+                        <div class="step-content"><?php echo $this->getChildHtml('payment'); ?></div>    
+                <?php endif; ?>
+                <?php if ($this->getChild('shipping_method') && $this->getChild('shipping_method')->isShow()): ?>
+                        <span class="step_title"><span><?php echo $steps['shipping_method']['label'];?></span></span>     
+                        <div class="step-content"><?php echo $this->getChildHtml('shipping_method'); ?></div>        
+                <?php endif; ?>         
+            </div>
+            <div class="part3">   
+                <?php if ($this->getChild('review') && $this->getChild('review')->isShow()): ?>
+                        <?php echo $this->getChildHtml('review'); ?>    
+                <?php endif; ?>
+            </div>     
+            <div class="part4">   
+                <div id="onepage-checkout-shipping-method-additional-load">
+                    <?php echo $this->getChildHtml('additional') ?>
+                </div>
+            </div>     
+        </form>    
+
+        <div class="clear"></div>
+    </div>
+    
+    <div class="checkout-bottom"> </div>    
+</div>
+<div class="checkout-extra-information">
+    <?php if (Mage::helper('onecheckout')->getConfig('extra/enable')): ?>
+        <?php echo Mage::helper('onecheckout')->getConfig('extra/extra')?>
+    <?php endif; ?>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    //<![CDATA[
+    var savetotalsUrl='<?php echo $this->getUrl('checkout/go/SaveTotals') ?>';
+    var onecheckout = new OSC(
+    {
+        failure: '<?php echo $this->getUrl('checkout/onepage/failure') ?>',
+        UpdateTotals: '<?php echo $this->getUrl('checkout/go/UpdateTotals') ?>',
+        UpdatePayment: '<?php echo $this->getUrl('checkout/go/UpdatePayment') ?>',
+        success: '<?php echo $this->getUrl('checkout/onepage/success') ?>'
+    }                                      
+);
+    if($('billing-address-select')) {
+        billing.setAddress($('billing-address-select').value);
+    } else {
+        billing.saveCountry();
+    }
+    //]]>
+</script>

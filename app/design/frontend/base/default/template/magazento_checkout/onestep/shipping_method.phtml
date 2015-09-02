@@ -1,0 +1,8 @@
+<div id="onecheckout-shipping-methods" style="display:block;">
+    <?php echo $this->getChildHtml('available') ?>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    var shippingMethod = new ShippingMethod("<?php echo $this->getUrl('checkout/go/saveShippingMethod') ?>",true);
+//]]>
+</script>

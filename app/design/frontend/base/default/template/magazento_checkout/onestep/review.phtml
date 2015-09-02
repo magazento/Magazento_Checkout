@@ -1,0 +1,35 @@
+<div class="review-top"></div>
+<div class="review-content">
+   <div id="checkout-review-load" style="display:block;" class="order">
+    <?php echo $this->getChildHtml('info') ?>
+    </div> 
+</div>
+<div class="review-bottom">
+        <p class="forgot"><?php echo $this->__('Forgot an Item?') ?> <a href="<?php echo $this->getUrl('checkout/cart') ?>"><?php echo $this->__('Edit Your Cart') ?></a>
+        </p>
+        <button type="button" class="place_order_cufon place_order" 
+                title="<?php echo $this->__('Place Order') ?>" 
+                onclick="CartTotals.save();">
+            <?php echo $this->__('Place Order') ?>
+        </button>
+</div>
+
+
+<div id="checkout-review-submit">
+   
+    <div class="extra-data">
+        <?php echo $this->getChildHtml('agreements') ?>
+        <?php if(Mage::helper('onecheckout')->getConfig('general/enable_newsletter')): ?>
+        <p class="osc-agreement-p">  <input class="checkbox" type="checkbox" name="is_subscribed" value="1" title="<?php echo $this->__('Sign Up for Newsletter'); ?>" class="checkbox" /><label for="newsletter"><?php echo $this->__('Sign Up for Newsletter'); ?></label></p>
+        <?php endif; ?>
+    </div>
+    
+    
+    
+    <script type="text/javascript">
+    //<![CDATA[
+        var CartTotals = new CartTotals('onecheckout-form', '<?php echo $this->getUrl('checkout/go/saveOrder') ?>', $('checkout-agreements'));
+        var carttotalsUrl='<?php echo $this->getUrl('checkout/go/saveOrder') ?>';
+    //]]>
+    </script>
+</div>
